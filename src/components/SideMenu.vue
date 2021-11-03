@@ -2,7 +2,7 @@
   <div class="menu">
     <div class="toolbar">
       <div class="toolbar__header">
-        <template v-if="!isUserOpenned">
+        <template v-if="!isUserOpened">
           <h3>Информация</h3>
         </template>
         <template v-else>
@@ -15,7 +15,7 @@
       <div class="toolbar__actions"></div>
     </div>
     <div class="content">
-      <div v-if="!isUserOpenned" class="legend">
+      <div v-if="!isUserOpened" class="legend">
         <div class="legend__data">
           <div v-if="legend.length > 0" class="legend__items">
             <Draggable v-model="legend">
@@ -35,6 +35,7 @@
           <Doughnut ref="chart" />
           <p>
             {{formatedDate}}
+
           </p>
         </div>
       </div>
@@ -57,7 +58,7 @@ import { format } from 'date-fns';
 
 export default {
   props: {
-    isUserOpenned: {
+    isUserOpened: {
       type: Boolean,
       default: false,
     },
@@ -88,7 +89,7 @@ export default {
       this.legend = legend;
     },
     closeProfile() {
-      this.$emit("update:isUserOpenned", false);
+      this.$emit("update:isUserOpened", false);
     },
     makeChart() {
       const chartData = {

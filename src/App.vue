@@ -1,8 +1,11 @@
 <template>
   <div id="app">
-    <div class="office">
-      <Map />
-      <SideMenu />
+    <div class="office" @click="hideInfo">
+      <Map @select-table="showInfo" />
+      <SideMenu
+        :person="tableInfo"
+        :isUserOpened="isInfoShow"
+      />
     </div>
   </div>
 </template>
@@ -17,6 +20,23 @@ export default {
     Map,
     SideMenu,
   },
+  data() {
+    return {
+      isInfoShow: false,
+      tableInfo: {}
+    }
+  },
+  methods: {
+    showInfo(tableInfo) {
+      this.tableInfo = tableInfo
+      this.isInfoShow = true
+    },
+    hideInfo() {
+      if (!event.target.classList.contains('wrapper-table')) {
+        this.isInfoShow = false
+      }
+    }
+  }
 };
 </script>
 
