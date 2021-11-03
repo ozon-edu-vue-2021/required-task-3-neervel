@@ -1,10 +1,14 @@
 <template>
   <div id="app">
-    <div class="office" @click="hideInfo">
-      <Map @select-table="showInfo" />
+    <div class="office">
+      <Map 
+        @select-table="showInfo"
+        @click-out="hideInfo"
+      />
       <SideMenu
         :person="tableInfo"
         :isUserOpened="isInfoShow"
+        @update:isUserOpened="hideInfo"
       />
     </div>
   </div>
@@ -32,9 +36,7 @@ export default {
       this.isInfoShow = true
     },
     hideInfo() {
-      if (!event.target.classList.contains('wrapper-table')) {
-        this.isInfoShow = false
-      }
+      this.isInfoShow = false
     }
   }
 };
@@ -42,7 +44,7 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Raleway', sans-serif;
   color: #2c3e50;
   background-color: #fafafa;
   padding: 24px;
@@ -65,7 +67,7 @@ h3 {
 
 .office {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 1fr 450px;
   border-radius: 6px;
   border: 1px solid #ccd8e4;
   height: 100%;

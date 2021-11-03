@@ -1,5 +1,5 @@
 <template>
-  <div class="map">
+  <div class="map" @click="hideInfo">
     <h3>Карта офиса</h3>
     <div v-if="!isLoading" class="map-root">
       <MapSVG ref="svg" />
@@ -82,6 +82,11 @@ export default {
     },
     showInfo(res) {
       this.$emit('select-table', res)
+    },
+    hideInfo() {
+      if (!event.target.classList.contains('wrapper-table')) {
+        this.$emit('click-out')
+      }
     }
   },
   directives: {

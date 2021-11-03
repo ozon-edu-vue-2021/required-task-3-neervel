@@ -6,10 +6,10 @@
           <h3>Информация</h3>
         </template>
         <template v-else>
+          <h3>Информация</h3>
           <div class="action">
-            <div class="arrow" @click="closeProfile"></div>
+            <div class="arrow" @click="closeProfile">✕</div>
           </div>
-          <h3>Профиль</h3>
         </template>
       </div>
       <div class="toolbar__actions"></div>
@@ -34,8 +34,7 @@
         <div class="legend__chart">
           <Doughnut ref="chart" />
           <p>
-            {{formatedDate}}
-
+            {{ formatedDate }}
           </p>
         </div>
       </div>
@@ -53,8 +52,8 @@ import LegendItem from "./SideMenu/LegendItem.vue";
 import PersonCard from "./SideMenu/PersonCard.vue";
 import legend from "@/assets/data/legend.json";
 import Draggable from "vuedraggable";
-import {Doughnut} from "vue-chartjs";
-import { format } from 'date-fns';
+import { Doughnut } from "vue-chartjs";
+import { format } from "date-fns";
 
 export default {
   props: {
@@ -93,31 +92,27 @@ export default {
     },
     makeChart() {
       const chartData = {
-        labels: this.legend.map((legendItem) =>  legendItem.text),
+        labels: this.legend.map((legendItem) => legendItem.text),
         datasets: [
           {
-            label: 'легенда',
-            backgroundColor: this.legend.map(
-              (legendItem) => legendItem.color
-            ),
-            data: this.legend.map(
-              (legendItem) => legendItem.counter
-            )
-          }
-        ]
-      }
+            label: "легенда",
+            backgroundColor: this.legend.map((legendItem) => legendItem.color),
+            data: this.legend.map((legendItem) => legendItem.counter),
+          },
+        ],
+      };
       const options = {
         legend: {
-          display: false
-        }
-      }
+          display: false,
+        },
+      };
       this.$refs.chart.renderChart(chartData, options);
     },
   },
   computed: {
-      formatedDate() {
-          return format(new Date(), 'dd.MM.yyyy hh:mm');
-      }
+    formatedDate() {
+      return format(new Date(), "dd.MM.yyyy hh:mm");
+    },
   },
 };
 </script>
@@ -147,12 +142,13 @@ export default {
 .toolbar__header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
   margin-bottom: 12px;
 }
 
 .toolbar__header .action {
   cursor: pointer;
-  margin-right: 14px;
   width: 20px;
   height: 20px;
   display: flex;
@@ -161,15 +157,13 @@ export default {
 }
 
 .toolbar__header .action .arrow {
-  width: 10px;
-  height: 10px;
-  border-top: 2px solid blue;
-  border-right: 2px solid blue;
-  transform: rotate(-135deg);
+  font-size: 25px;
+  font-weight: bold;
 }
 
 h3 {
   margin: 0;
+  font-size: 24px;
 }
 
 .content {
@@ -212,6 +206,6 @@ h3 {
 }
 
 .profile {
-  padding-top: 20px;
+  padding-top: 40px;
 }
 </style>
