@@ -15,7 +15,7 @@
       <div class="toolbar__actions"></div>
     </div>
     <div class="content">
-      <div v-if="!isUserOpened" class="legend">
+      <div v-show="!isUserOpened" class="legend">
         <div class="legend__data">
           <div v-if="legend.length > 0" class="legend__items">
             <Draggable v-model="legend">
@@ -38,7 +38,7 @@
           </p>
         </div>
       </div>
-      <div v-else class="profile">
+      <div v-show="isUserOpened" class="profile">
         <div v-if="!person" class="profile__empty">Место пустое</div>
 
         <PersonCard :person="person" />
@@ -105,8 +105,14 @@ export default {
         legend: {
           display: false,
         },
+        responsive: true,
       };
       this.$refs.chart.renderChart(chartData, options);
+    },
+  },
+  watch: {
+    isUserOpened: function () {
+      this.makeChart();
     },
   },
   computed: {
@@ -207,5 +213,9 @@ h3 {
 
 .profile {
   padding-top: 40px;
+}
+
+.legend__chart {
+  margin-top: 20px;
 }
 </style>

@@ -9,9 +9,7 @@
       <div class="person__info-company">{{ person.company }}</div>
       <div class="person__info-email">
         <div class="person__info-email__btn">
-          <a :href="`mailto:${person.email}`">
-            <b-icon font-scale="1.3" icon="envelope"></b-icon
-          ></a>
+          <a :href="`mailto:${person.email}`"><Mail /></a>
         </div>
       </div>
     </div>
@@ -19,12 +17,17 @@
 </template>
 
 <script>
+import Mail from "@/assets/images/mail.svg";
+
 export default {
   props: {
     person: {
       type: Object,
       default: null,
     },
+  },
+  components: {
+    Mail,
   },
   computed: {
     formatedDate() {
@@ -79,5 +82,11 @@ export default {
   align-items: center;
   justify-content: center;
   background-color: #e2ebfd;
+}
+
+@media screen and (max-width: 768px) {
+  .person {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

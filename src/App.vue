@@ -72,4 +72,15 @@ h3 {
   max-width: 1500px;
   margin: 0 auto;
 }
+
+@media screen and (max-width: 768px) {
+  #app {
+    height: auto;
+  }
+
+  .office {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
 </style>
