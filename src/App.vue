@@ -1,10 +1,7 @@
 <template>
   <div id="app">
     <div class="office">
-      <Map 
-        @select-table="showInfo"
-        @click-out="hideInfo"
-      />
+      <Map @select-table="showInfo" @click-out="hideInfo" />
       <SideMenu
         :person="tableInfo"
         :isUserOpened="isInfoShow"
@@ -27,24 +24,24 @@ export default {
   data() {
     return {
       isInfoShow: false,
-      tableInfo: {}
-    }
+      tableInfo: {},
+    };
   },
   methods: {
     showInfo(tableInfo) {
-      this.tableInfo = tableInfo
-      this.isInfoShow = true
+      this.tableInfo = tableInfo;
+      this.isInfoShow = true;
     },
     hideInfo() {
-      this.isInfoShow = false
-    }
-  }
+      this.isInfoShow = false;
+    },
+  },
 };
 </script>
 
 <style>
 #app {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   color: #2c3e50;
   background-color: #fafafa;
   padding: 24px;

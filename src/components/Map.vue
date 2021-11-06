@@ -3,10 +3,7 @@
     <h3>Карта офиса</h3>
     <div v-if="!isLoading" class="map-root">
       <MapSVG ref="svg" />
-      <TableSVG 
-        v-show="false" 
-        ref="table" 
-      />
+      <TableSVG v-show="false" ref="table" />
     </div>
     <div v-else>Loading...</div>
   </div>
@@ -65,7 +62,7 @@ export default {
           .classed("employer-place", true)
           .on("click", () => {
             const res = people.find((it) => it.tableId === table._id) ?? {};
-            this.showInfo(res)
+            this.showInfo(res);
           });
 
         targetSeat
@@ -81,13 +78,13 @@ export default {
       });
     },
     showInfo(res) {
-      this.$emit('select-table', res)
+      this.$emit("select-table", res);
     },
     hideInfo() {
-      if (!event.target.classList.contains('wrapper-table')) {
-        this.$emit('click-out')
+      if (!event.target.classList.contains("wrapper-table")) {
+        this.$emit("click-out");
       }
-    }
+    },
   },
   directives: {
     ClickOutside,
